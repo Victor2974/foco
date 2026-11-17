@@ -1,0 +1,81 @@
+/* Foco — regras de bloqueio. Só valem com html.foco-on (foco ligado). */
+
+/* Trava a rolagem quando a tela de bloqueio está aberta */
+html.foco-on.foco-locked,
+html.foco-on.foco-locked body {
+  overflow: hidden !important;
+}
+
+/* ---------------- YouTube ---------------- */
+
+/* Prateleiras de Shorts (início, inscrições, busca, vídeo) */
+html.foco-on.foco-youtube ytd-reel-shelf-renderer,
+html.foco-on.foco-youtube ytd-rich-shelf-renderer[is-shorts],
+html.foco-on.foco-youtube ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.foco-on.foco-youtube ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model),
+html.foco-on.foco-youtube ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model-v2),
+html.foco-on.foco-youtube grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+html.foco-on.foco-youtube grid-shelf-view-model:has(ytm-shorts-lockup-view-model-v2),
+html.foco-on.foco-youtube ytm-shorts-lockup-view-model,
+html.foco-on.foco-youtube ytm-shorts-lockup-view-model-v2,
+
+/* Shorts soltos no meio das listas */
+html.foco-on.foco-youtube ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+html.foco-on.foco-youtube ytd-video-renderer:has(a[href^="/shorts/"]),
+html.foco-on.foco-youtube ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+html.foco-on.foco-youtube ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+html.foco-on.foco-youtube yt-lockup-view-model:has(a[href^="/shorts/"]),
+html.foco-on.foco-youtube ytd-notification-renderer:has(a[href^="/shorts/"]),
+
+/* Menu lateral, mini menu, aba do canal e filtro da busca */
+html.foco-on.foco-youtube ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html.foco-on.foco-youtube ytd-guide-entry-renderer:has(a[href^="/shorts"]),
+html.foco-on.foco-youtube ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html.foco-on.foco-youtube ytd-mini-guide-entry-renderer:has(a[href^="/shorts"]),
+html.foco-on.foco-youtube yt-tab-shape[tab-title="Shorts"],
+html.foco-on.foco-youtube yt-chip-cloud-chip-renderer:has([title="Shorts"]),
+
+/* YouTube no celular (m.youtube.com) */
+html.foco-on.foco-youtube ytm-reel-shelf-renderer,
+html.foco-on.foco-youtube ytm-pivot-bar-item-renderer:has(.pivot-shorts),
+html.foco-on.foco-youtube ytm-video-with-context-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}
+
+/* ---------------- Instagram ---------------- */
+
+/* Link "Reels" do menu e aba Reels dos perfis */
+html.foco-on.foco-instagram a[href$="/reels/"],
+html.foco-on.foco-instagram a[href="/reels"] {
+  display: none !important;
+}
+
+/* Nenhum vídeo aparece: feed, stories, reels e mensagens */
+html.foco-on.foco-instagram video,
+html.foco-on.foco-tiktok video {
+  visibility: hidden !important;
+}
+
+html.foco-on.foco-instagram [data-foco-blocked]::after {
+  content: "Vídeo bloqueado · Foco";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d10;
+  color: #9a9aa6;
+  font: 600 13px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+/* ---------------- Facebook ---------------- */
+
+html.foco-on.foco-facebook a[href^="/reel/"],
+html.foco-on.foco-facebook a[href*="facebook.com/reel/"],
+html.foco-on.foco-facebook a[href="/reels/"],
+html.foco-on.foco-facebook a[href$="/reels/"] {
+  display: none !important;
+}
